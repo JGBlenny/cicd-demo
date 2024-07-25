@@ -41,16 +41,20 @@ jobs:
             GITHUB_EVENT_NAME: ${{ github.event_name }}
             GITHUB_EVENT_INPUTS_ACTION: ${{ github.event.inputs.action }}
         run: |
-          ssh -i ~/.ssh/id_rsa ec2-user@18.182.31.31 << 'EOF'
+          ssh -i ~/.ssh/id_rsa ec2-user@18.182.31.31 << EOF
+          export GITHUB_EVENT_NAME="${{ github.event_name }}"
+          export GITHUB_EVENT_INPUTS_ACTION="${{ github.event.inputs.action }}"
           cd ~/cicd-demo
-
-           if [ "$GITHUB_EVENT_NAME" = "push" ]; then
-              # 當 push 到 master 時，執行 git pull
-              echo "Pulling latest changes from master..."
+      
+          # Echo 出環境變數以進行調試
+          echo "GITHUB_EVENT_NAME: \$GITHUB_EVENT_NAME"
+          echo "GITHUB_EVENT_INPUTS_ACTION: \$GITHUB_EVENT_INPUTS_ACTION"
+      
+          if [ "\$GITHUB_EVENT_NAME" = "push" ]; then
+              echo "Pulling latest changes from main..."
               git pull origin main --ff-only
-          elif [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
-              # 當手動觸發工作流時的行為
-              if [ "$GITHUB_EVENT_INPUTS_ACTION" = "rollback" ]; then
+          elif [ "\$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+              if [ "\$GITHUB_EVENT_INPUTS_ACTION" = "rollback" ]; then
                   echo "Rolling back to specified tag..."
                   git checkout tags/your-tag-name
               else
