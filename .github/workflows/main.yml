@@ -101,4 +101,4 @@ jobs:
           # docker-compose pull
           # docker-compose down
           # docker-compose up -d --build
-          EOF # 結束 SSH 會話
+          EOF
