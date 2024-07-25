@@ -17,9 +17,22 @@ on:
           - rollback
 
 jobs:
-  build:
+  check:
+    runs-on: ubuntu-latest
+    
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+  
+        - name: Validate HTML
+          run: |
+            npm install -g htmlhint
+            htmlhint index.html
+
+  deploy:
     runs-on: ubuntu-latest
     environment: dev
+    needs: check  # 確保在檢查作業成功後執行
 
     steps:
       # 簽出您的存儲庫
