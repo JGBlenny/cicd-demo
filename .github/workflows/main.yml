@@ -37,6 +37,9 @@ jobs:
           ssh-keyscan -H 18.182.31.31 >> ~/.ssh/known_hosts
           
       - name: Deploy to EC2 via Bastion Host
+        env: 
+            GITHUB_EVENT_NAME: ${{ github.event_name }}
+            GITHUB_EVENT_INPUTS_ACTION: ${{ github.event.inputs.action }}
         run: |
           ssh -i ~/.ssh/id_rsa ec2-user@18.182.31.31 << 'EOF'
           cd ~/cicd-demo
