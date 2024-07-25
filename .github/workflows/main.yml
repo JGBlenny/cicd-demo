@@ -59,7 +59,7 @@ jobs:
           echo "Deployment successful on $(date)" >> status.txt
 
           docker-compose down
-          docker-compose up
+          docker-compose up -d --build
 
           # 繼續進行其他操作
           # yarn build
