@@ -1,5 +1,5 @@
 # workflow 名稱
-name: CICD
+name: CICD-release
 
 # 定義了工作流的觸發條件
 on:
