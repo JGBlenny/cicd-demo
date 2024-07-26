@@ -70,7 +70,7 @@ jobs:
           ssh -i ~/.ssh/id_rsa ec2-user@18.182.31.31 << EOF
           export GITHUB_EVENT_NAME="${{ github.event_name }}"
           export GITHUB_EVENT_INPUTS_ACTION="${{ github.event.inputs.action }}"
-          BRANCH_NAME= main # 提取純分支名稱
+          BRANCH_NAME=main # 提取純分支名稱
           cd ~/cicd-demo
       
           # Echo 出環境變數以進行調試
