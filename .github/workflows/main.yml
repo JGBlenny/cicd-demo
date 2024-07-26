@@ -45,7 +45,21 @@ jobs:
 
             # 使用 htmlhint 驗證指定的 HTML 文件是否符合標準
             # 對 index.html 文件進行語法檢查，確保 HTML 文件格式正確。
-            htmlhint index.html 
+            htmlhint index.html
+
+        # - name: Set up PHP
+        #   uses: shivammathur/setup-php@v2
+        #   with:
+        #     php-version: '8.0'  # 設置 PHP 版本
+        #     extensions: mbstring, xml, bcmath, sqlite3  # 需要的 PHP 擴展
+
+        # - name: Install Composer dependencies
+        #   run: |
+        #     composer install --prefer-dist --no-progress --no-suggest
+
+        # - name: Run Laravel Tests
+        #   run: |
+        #     php artisan test  # 執行 Laravel 的測試
 
   deploy:
     runs-on: ubuntu-latest 
