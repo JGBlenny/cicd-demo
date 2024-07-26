@@ -47,6 +47,8 @@ jobs:
             # 對 index.html 文件進行語法檢查，確保 HTML 文件格式正確。
             htmlhint index.html
 
+        # 如果您希望測試應用程式的功能（例如使用 Laravel 的內建測試框架進行單元測試或功能測試），您通常需要先安裝所需的 PHP 環境和依賴，然後執行測試。
+        # 在這種情況下，您不需要直接進入伺服器，因為可以在工作流上本地運行測試。
         # - name: Set up PHP
         #   uses: shivammathur/setup-php@v2
         #   with:
