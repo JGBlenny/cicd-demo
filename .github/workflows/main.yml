@@ -39,8 +39,13 @@ jobs:
   
         - name: Validate HTML
           run: |
+            # 安裝 htmlhint 工具，用來檢查 HTML 語法及形式
+            # 使用 npm 安裝 htmlhint 為全局工具。
             npm install -g htmlhint
-            htmlhint index.html
+
+            # 使用 htmlhint 驗證指定的 HTML 文件是否符合標準
+            # 對 index.html 文件進行語法檢查，確保 HTML 文件格式正確。
+            htmlhint index.html 
 
   deploy:
     runs-on: ubuntu-latest 
